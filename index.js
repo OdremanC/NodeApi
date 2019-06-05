@@ -1,27 +1,20 @@
+// Librerias necesarias
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const mongoose = require("mongoose");
-
 const cors = require('cors');
+
 //requerimos el archivo de configuracion
 const config = require('./config');
-app.use(bodyParser.json());
+// Parseo a JSON de las respuestas
+app.use( bodyParser.json() );
+// Usamos Cors para permitir conexiones externas
+app.use( cors() );
 
-app.use(cors());
-//configuramos mongo con los datos el archivo de config
-mongoose.connect(config.mongo.url,config.mongo.options);
-mongoose.Promise = Promise;
-mongoose.connection
-  .on('error', function(err) {
-        console.log(err)
-        process.exit(1);
-  })
-  .on('open', function() {
-        console.log("open")
-  });
+// llamamos a nuestras rutas
+require( './app/route' )( app );
+// levantamos el servidor desde el puerto de configuracion
+app.listen( config.port );
 
-require("./app/route")(app);
-app.listen(config.port);
-
+// exportamos
 module.exports = app;

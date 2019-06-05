@@ -10,9 +10,13 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.1",
+    "cluster": "^0.7.7",
     "cors": "^2.8.4",
     "express": "^4.15.4",
-    "mongoose": "^4.11.11"
+    "http": "0.0.0",
+    "mongoose": "^4.11.11",
+    "os": "^0.1.1",
+    "pg": "^7.11.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
